@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        div{
-            width: 10px;height:10px;
-            background-color: red;position: relative;
-        }
-    </style>
+
     <script>
         window.onload=function () {
-            var n1=document.getElementsByTagName("div");
+
+            for (var i=0;i<14;i++){
+                var moveDiv = document.createElement('div');
+                moveDiv.innerHTML = '添加的div';
+                moveDiv.className='moveDiv';
+                moveDiv.id='moveDiv';
+                moveDiv.style.width='10px';
+                //height:10px; background-color: red;position: relative;
+                moveDiv.style.height='10px';
+                moveDiv.style.backgroundColor='red';
+                moveDiv.style.position='relative';
+                document.body.appendChild(moveDiv);
+            }
+
+            var n1=document.getElementsByClassName("moveDiv");
             var i=0;
             document.onmousemove=function (ev) {
                 var oev=ev||event;
@@ -26,19 +35,6 @@
     </script>
 </head>
 <body>
-<div>1</div>
-<div>2</div>
-<div>3</div>
-<div>4</div>
-<div>5</div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
+
 </body>
 </html>
