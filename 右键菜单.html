@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #ul1{
+            position: absolute;list-style: none;
+            display: none;margin: 0;padding: 0;
+            width: 100px;height: 100px;background-color: blue;
+        }
+    </style>
+    <script>
+        document.oncontextmenu=function (ev) {
+            var n1=document.getElementById("ul1");
+            var oEvent=ev||event;
+            n1.style.display="block";
+            n1.style.top=oEvent.clientY+"px";
+            n1.style.left=oEvent.clientX+"px";
+            return false;
+        };
+        document.onclick=function () {
+            var n1=document.getElementById("ul1");
+            n1.style.display="none";
+        };
+        var n1=document.getElementById("ul1");
+        n1.onclick=function () {
+            return false;
+        };
+    </script>
+</head>
+<body>
+<ul id="ul1">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>2</li>
+</ul>
+</body>
+</html>

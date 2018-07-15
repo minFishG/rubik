@@ -7,15 +7,16 @@
     <script>
         window.onload=function () {
 
-            for (var i=0;i<14;i++){
+            for (var i=0;i<50;i++){
                 var moveDiv = document.createElement('div');
-                moveDiv.innerHTML = '添加的div';
+                moveDiv.innerHTML =i;
                 moveDiv.className='moveDiv';
                 moveDiv.id='moveDiv';
-                moveDiv.style.width='10px';
-                moveDiv.style.height='10px';
+                moveDiv.style.width='20px';
+                moveDiv.style.height='15px';
                 moveDiv.style.backgroundColor='red';
-                moveDiv.style.position='relative';
+                moveDiv.style.position='absolute';
+                moveDiv.style.zIndex='12222';
                 document.body.appendChild(moveDiv);
             }
 
@@ -34,6 +35,5 @@
     </script>
 </head>
 <body>
-
 </body>
 </html>

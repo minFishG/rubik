@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            position: absolute;
+            width: 100px;height: 100px;background-color: aqua;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            document.onkeydown=function (ev) {
+                var n1=document.getElementById("div1");
+                var oEv=ev||event;
+                if(oEv.keyCode=="37"||oEv.keyCode=="65"){
+                    n1.style.left=n1.offsetLeft-10+"px";    //左
+                }else if(oEv.keyCode=="38"||oEv.keyCode=="87"){
+                    n1.style.top=n1.offsetTop-10+"px";       //上
+                }else if(oEv.keyCode=="39"||oEv.keyCode=="68"){
+                    n1.style.left=n1.offsetLeft+10+"px";     //右
+                }else if(oEv.keyCode=="40"||oEv.keyCode=="83"){
+                    n1.style.top=n1.offsetTop+10+"px";        //下
+                }else if(oEv.keyCode=="81") {
+                    n1.style.left=n1.offsetLeft-10+"px";
+                    n1.style.top = n1.offsetTop - 10 + "px";   //左上
+                }else if(oEv.keyCode=="90") {
+                    n1.style.left=n1.offsetLeft-10+"px";
+                    n1.style.top = n1.offsetTop +10 + "px";   //左下
+                }else if(oEv.keyCode=="69") {
+                    n1.style.left=n1.offsetLeft+10+"px";
+                    n1.style.top = n1.offsetTop -10 + "px";   //右上
+                }else if(oEv.keyCode=="67") {
+                    n1.style.left=n1.offsetLeft+10+"px";
+                    n1.style.top = n1.offsetTop +10 + "px";   //右下
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+   <h3>提示</h3>
+   <p>w上， a左， s下， d右， q左上， e右上， z左下， c右下</p>
+   <div id="div1"></div>
+</body>
+</html>
