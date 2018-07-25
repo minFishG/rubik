@@ -8,7 +8,7 @@
             position: absolute;
             top: 0;left: 0;
             width: 125px;height: 128px;
-            background-image: url(img/dog.png)
+            background-color: aqua;
         }
     </style>
     <script>
@@ -18,24 +18,22 @@
                 var l=oev.clientX-wzX;
                 if(l<0){
                     l=0;
-                }else if(l>document.documentElement.clientWidth-n1.offsetWidth){
-                    l=document.documentElement.clientWidth-n1.offsetWidth;
-                }
+                } else if(l>document.documentElement.clientWidth-n1.offsetWidth){
+                    l=document.documentElement.clientWidth-n1.offsetWidth;}
                 if(t<0){
                     t=0;
                 }else if(t>document.documentElement.clientHeight-n1.offsetHeight){
-                    t=document.documentElement.clientHeight-n1.offsetHeight;
-                }
+                    t=document.documentElement.clientHeight-n1.offsetHeight;}
             moveobj.style.top=t+"px";
             moveobj.style.left=l+"px";
-
         }
 
         //TODO 获得body对象
         var body=document.getElementsByTagName("body")[0];
-
         //TODO body绑定鼠标移动事件
-        body.onmousemove=function test(ev){ mousemove(document.getElementById("div1"),ev)};
+        body.onmousemove=function test(ev){
+            mousemove(document.getElementById("div1"),ev)
+        };
 
         window.onload=function () {
           var n1=document.getElementById("div1");
