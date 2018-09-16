@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分享</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        #div1{
+            background-color: darkgrey;width: 100px;height: 200px;position: absolute;
+            top: 100px;left: -100px;
+        }
+        #div1 span{
+            width: 20px;height: 65px;background-color: yellow;display: block;
+            position: relative;top: 50px;left: 100px;
+        }
+        #div1 a{color: blue;}
+    </style>
+    <script>
+        window.onload=function () {
+            var timer=null;
+            var odiv=document.getElementById("div1");
+            var ospan=document.getElementsByTagName("span")[0];
+            function movediv(iTarget) {
+                clearInterval(timer);
+                var iSpeed=null;
+                if(odiv.offsetLeft<iTarget){
+                    iSpeed=10;
+                }else{
+                    iSpeed=-10;
+                }
+                timer=setInterval(function () {
+                    if(odiv.offsetLeft==iTarget){
+                        clearInterval(timer);
+                    }else{
+                        odiv.style.left=odiv.offsetLeft+iSpeed+"px";
+                    }
+                    if(odiv.offsetLeft==0){
+                        ospan.style.display="none";
+                    }else{
+                        ospan.style.display="block";
+                    }
+                },30);
+            }
+            odiv.onmouseover=function () {
+                movediv(0);
+            };
+            odiv.onmouseout=function () {
+                movediv(-100);
+            };
+        }
+
+    </script>
+</head>
+<body>
+<div id="div1">
+    <a href="http://www.baidu.com">百度一下</a>
+    <span>分享到</span>
+</div>
+</body>
+</html>

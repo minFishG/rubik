@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;height: 100px;background-color: red;
+            margin-top: 30px;filter:alpha(opacity:30);opacity:0.3;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            function getstyle(obj,attr) {
+                if(obj.currentStyle){
+                    return obj.currentStyle[attr];
+                }else{
+                    return window.getComputedStyle(obj,null)[attr];
+                }
+            }
+            function startmove(obj,iTarget,attr) {
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function () {
+                    var icur =0;
+                    if(attr=="opacity"){
+                        icur=parseInt(parseFloat(getstyle(obj,attr))*100);
+                    }else{
+                        icur=parseInt(getstyle(obj,attr));
+                    }
+                    var iSpeed = (iTarget - icur) / 8;
+                    iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                    if (icur == iTarget) {
+                        clearInterval(timer);
+                    } else {
+                        if(attr=="opacity"){
+                            obj.style.filter='alpha(opacity:'+(icur+iSpeed)+')';
+                            obj.style.opacity=(icur+iSpeed)/100;
+                        }else{
+                            obj.style[attr]= icur + iSpeed+"px";
+                        }
+                    }
+                }, 30)
+            }
+            var odiv=document.getElementsByTagName("div");
+            for(var i=0;i<odiv.length;i++){
+                odiv[i].onmouseover=function () {
+                    startmove(this,100,'opacity');
+                }
+                odiv[i].onmouseout=function () {
+                    startmove(this,30,'opacity');
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div>aaaaaa</div>
+<div></div>
+<div></div>
+</body>
+</html>

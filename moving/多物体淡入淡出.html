@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            filter:alpha(opacity:30);opacity:0.3;margin-top: 30px;
+            width:100px;height: 100px;background-color: red;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var odiv=document.getElementsByTagName("div");
+            for(var i=0;i<odiv.length;i++){
+                odiv[i].timer=null;
+                odiv[i].alpha=null;
+                odiv[i].onmouseover=function () {
+                    startmove(this,100);
+                };
+                odiv[i].onmouseout=function () {
+                    startmove(this,30);
+                };
+            }
+            function startmove(obj,iTarget) {
+                clearInterval(obj.timer);
+                obj.timer=setInterval(function () {
+                    var iSpeed=(iTarget-obj.alpha)/8;
+                    iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+                    if(odiv.alpha==iTarget){
+                        clearInterval(obj.timer);
+                    }else{
+                        obj.alpha+=iSpeed;
+                        obj.style.filter='alpha(opacity::'+obj.alpha+')';
+                        obj.style.opacity=obj.alpha/100;
+                    }
+                },30);
+            }
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #div1{
+            width: 100px;height: 100px;background-color: aqua;position: absolute;
+        }
+        .diva{
+            width: 1px;height: 100px;background-color: black;position: absolute;
+            left: 400px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var timer=null;
+            var odiv=document.getElementById("div1");
+            function startmove(iTarget) {
+                clearInterval(timer);
+                var iSpeed=null;
+                if(odiv.offsetLeft<iTarget){
+                    iSpeed=6;
+                }else{
+                    iSpeed=-6;
+                }
+                timer=setInterval(function () {
+                    if(Math.abs(odiv.offsetLeft-iTarget)<6){
+                        clearInterval(timer);
+                        odiv.style.left=iTarget+"px";
+                    }else{
+                        odiv.style.left=odiv.offsetLeft+iSpeed+"px";
+                    }
+                },30);
+            }
+            odiv.onmouseover=function () {
+                startmove(300);
+            };
+            odiv.onclick=function () {
+                startmove(0);
+            };
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<div class="diva"></div>
+</body>
+</html>

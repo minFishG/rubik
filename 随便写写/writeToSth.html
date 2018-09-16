@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function creatDiv(num) {
+            for(var i=1;i<=num;i++){
+                var box1=document.createElement('div');//主要
+                box1.style.height="100px";
+                box1.style.width="100px";
+                box1.style.backgroundColor="blue";
+                box1.innerHTML=i;
+                box1.style.border="1px solid black";
+                box1.style.cssFloat = "left";
+                document.body.appendChild(box1);//主要
+            }
+        }
+        window.onload=function () {
+            var odiv=document.getElementById("div1");
+            odiv.style.width="1000px";
+            odiv.style.height="500px";
+            odiv.style.border="1px solid blue";
+            odiv.adddiv=function () {
+                creatDiv(2);
+            };
+           // odiv.adddiv();
+        }
+    </script>
+</head>
+<body>
+<div>2</div>
+<div id="div1"></div>
+</body>
+</html>

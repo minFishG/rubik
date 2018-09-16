@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function(){
+            function createElement(element,id) {
+                var oEle=document.createElement(element);
+                oEle.id=id;
+                document.body.appendChild(oEle);
+            }
+            createElement("div","div1");
+            var odiv=document.getElementById("div1");
+            odiv.style.height="100px";
+            odiv.style.backgroundColor="red";
+            odiv.style.width="100px";
+            odiv.style.position="absolute";
+            odiv.style.top="100px";
+            createElement("input","inp1");
+            var obt=document.getElementById("inp1");
+            obt.type="button";
+            obt.value="点击";
+            createElement("input","inp2");
+            var obt2=document.getElementById("inp2");
+            obt2.type="button";
+            obt2.value="点击我速度更快";
+            createElement("input","inp3");
+            var obt3=document.getElementById("inp3");
+            obt3.type="button";
+            obt3.value="还原";
+            //-------------------以上是js创建元素
+
+            var timer=null;
+            function movediv(ispeed) {
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    if (odiv.offsetLeft >= 1000) {
+                        clearInterval(timer);
+                    } else {
+                        odiv.style.left = odiv.offsetLeft + ispeed + "px";
+                    }
+                }, 30);
+            }
+            obt.onclick=function() {
+                movediv(6);
+            };
+            obt2.onclick=function() {
+                movediv(15);
+            };
+            obt3.onclick=function() {
+                odiv.style.left="0";
+            };
+            }
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="moving.js"></script>
+    <script>
+        window.onload=function () {
+            var n1=document.getElementsByTagName("div")[0];
+            n1.style.backgroundColor="red";
+            n1.style.height="100px";
+            n1.style.width="100px";
+            n1.onmouseover=function () {
+                startmove(n1,{width:102,height:200,opacity:30},function () {
+                    startmove(n1,{width:300,height:300});
+                });
+            };
+            n1.onmouseout=function () {
+                startmove(n1,{width:100,height:100,opacity:100});
+            };
+        }
+    </script>
+</head>
+<body>
+<div></div>
+</body>
+</html>
