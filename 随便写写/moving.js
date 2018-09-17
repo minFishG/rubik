@@ -2,7 +2,7 @@ function getstyle(obj,attr) {
     if(obj.currentStyle){
         return obj.currentStyle[attr];
     }else{
-        return getComputedStyle(obj,false)[attr];
+        return window.getComputedStyle(obj,null)[attr];
     }
 }
 function startmove(obj,json,fn) {
@@ -28,11 +28,9 @@ function startmove(obj,json,fn) {
                 obj.style[attr]= icur + iSpeed+"px";
             }
         }
-        if(bstop)
-        {
+        if(bstop){
             clearInterval(obj.timer);
-            if(fn)
-            {
+            if(fn){
                 fn();
             }
         }
