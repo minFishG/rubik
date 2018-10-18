@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var c=document.getElementById("myc").getContext("2d");
+
+            for(var i=0;i<20;i++){
+                c.fillStyle="#000";
+                c.beginPath();
+                c.arc(300,300,10*i,Math.PI*0.5,Math.PI*1.5,false);
+                //   c.closePath();
+                c.stroke();
+            }
+
+            document.onclick=function (ev) {
+                var oev=ev||event;
+                c.clearRect(oev.clientX-20,oev.clientY-20,30,30);
+            };
+
+        }
+    </script>
+</head>
+<body>
+
+<canvas id="myc" style="border: 1px solid" width="1400px" height="700px"></canvas>
+</body>
+</html>

@@ -13,7 +13,7 @@ function getStyle(obj, attr)
 	}
 }
 
-function startMove(obj, json, fn)
+function startmove(obj, json, fn)
 {
 	clearInterval(obj.timer);
 	obj.timer=setInterval(function (){

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var onow=0,od2l=0,od2t=0,od3l=0,od3t=0;
+            var od1=document.getElementById("div1");
+            var od2=document.getElementById("div2");
+            var od3=document.getElementById("div3");
+            od2.style.position=od3.style.position="absolute";
+            od3.style.width=od2.style.width=od3.style.height=od2.style.height="10px";
+            od3.style.backgroundColor=od2.style.backgroundColor="blue";
+            od3.style.display="none";
+            od2.style.display="none";
+            document.onclick=function (ev) {
+                var oev=event||ev;
+                if (onow==0){
+                    od3.style.display="none";
+                    od2.style.display="block";
+                    od2l=oev.clientX;
+                    od2.style.left=od2l+"px";
+                    od2t=oev.clientY;
+                    od2.style.top=od2t+"px";
+                    od2.innerHTML="x:"+od2l+";"+"y:"+od2t;
+                    od1.innerHTML="两点间距离为：";
+                    onow=1;
+                }else{
+                    od3.style.display="block";
+                    od3l=oev.clientX;
+                    od3.style.left=od3l+"px";
+                    od3t=oev.clientY;
+                    od3.style.top=od3t+"px";
+                    od3.innerHTML="x:"+od3l+";"+"y:"+od3t;
+                    onow=0;
+                    var sq=Math.sqrt(Math.pow(Math.abs(od2l-od3l),2)+Math.pow(Math.abs(od2t-od3t),2));
+                    var jl=Math.floor(sq*1000)/1000;
+                    od1.innerHTML="两点间距离为："+jl+"px";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1">两点间距离为：</div>
+<div id="div2"></div>
+<div id="div3"></div>
+</body>
+</html>

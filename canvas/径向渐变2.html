@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var odiv=document.getElementById("div1");
+            odiv.style.width="100px";
+            odiv.style.height="100px";
+            var i=10,o=200,p=30;x=1;y=2;z=3;
+            setInterval(function () {
+                i+=x;o+=y;p+=z;
+                if(i>=255){
+                    x=-1;
+                }
+                if(i<=0){
+                    x=1;
+                }
+                if(o>=255){
+                    y=-2;
+                }
+                if(o<=0){
+                    y=2;
+                }
+                if(p>=255){
+                    z=-3;
+                }
+                if(p<=0){
+                    z=3;
+                }
+                odiv.style.backgroundColor="rgb("+i+","+o+","+p+")";
+            },30);
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

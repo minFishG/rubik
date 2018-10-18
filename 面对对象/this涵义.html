@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var d1=document.getElementById("div1");
+            var d1x=d1.getElementsByTagName("div");
+            var d2=document.getElementById("div2");
+            var d2x=d2.getElementsByTagName("div");
+            for(var i=0;i<d1x.length;i++){
+                d1x[i].index=i;
+                d1x[i].onclick=function () {
+                    for(var y=0;y<d2x.length;y++){
+                        d2x[y].style.backgroundColor="blue";
+                    }
+                    d2x[this.index].style.backgroundColor="red";
+                }
+            }
+        }
+    </script>
+    <style>
+        #div1>div{
+            width: 50px;height: 30px;background-color: blue;margin-top: 10px;
+        }
+        #div2>div{
+             width: 100px;height: 100px;background-color: blue;margin-top: 10px;
+         }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</div>
+<div id="div2">
+    <div>a</div>
+    <div>b</div>
+    <div>c</div>
+</div>
+</body>
+</html>

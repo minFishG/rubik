@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            for(var i=0;i<100;i++){
+                var r=(80+(3*i));
+                var g=(1+(3*i));
+                var b=(150+(3*i));
+                var odiv=document.createElement("div");
+                odiv.style.height="600px";
+                odiv.style.width="18px";
+                odiv.style.backgroundColor="rgb("+r+","+g+","+b+")";
+                odiv.style.float="left";
+                document.body.appendChild(odiv);
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

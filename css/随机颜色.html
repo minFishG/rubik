@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            for(var i=0;i<100;i++){
+                var r=Math.floor(Math.random()*256);
+                var g=Math.floor(Math.random()*256);
+                var b=Math.floor(Math.random()*256);
+                var odiv=document.createElement("div");
+                odiv.style.height="100px";
+                odiv.style.width="30px";
+                odiv.style.backgroundColor="rgb("+r+","+g+","+b+")";
+                odiv.style.float="left";
+                document.body.appendChild(odiv);
+            }
+            alert(document.getElementsByTagName("div")[0].style.backgroundColor);
+          //  alert(document.getElementsByTagName("div")[0].style.height);
+
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

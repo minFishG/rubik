@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var c=document.getElementById("myc").getContext("2d");
+            c.moveTo(10,10);
+            document.onclick=function(ev){
+                var oev=ev||event;
+                c.lineTo(oev.clientX,oev.clientY);c.stroke();
+            };
+            c.stroke();
+        }
+    </script>
+</head>
+<body>
+<canvas id="myc" style="border: 1px solid" width="1200px" height="600px"></canvas>
+</body>
+</html>
