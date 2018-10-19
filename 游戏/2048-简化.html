@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        #box{
+            background-color: #bbada0;position: relative;
+            margin: 30px auto;width: 460px;height: 460px;
+        }
+    </style>
+    <script>
+        function takebl(w){
+            var bl=document.getElementById("box").getElementsByTagName("div");
+            var ar0=[],ar1=[],ar2=[],ar3=[],arr=[];
+            var t1=1,t2=0,t3=1,t4=4;
+            if(w==1){
+                t1=4;t2=4;t3=1;t4=4;
+            }else{
+                t1=1;t2=16;t3=4;t4=0;
+            }
+            for(var z=0;z<4;z++){
+                for(var i=z*t1;i<z*t4+t2;i+=t3){//(i=z;i<16;i+=4)
+                    if(bl[i].now!=0){
+                        if(z==0){
+                            ar0.push(bl[i].now);
+                        }else if(z==1){
+                            ar1.push(bl[i].now);
+                        }else if(z==2){
+                            ar2.push(bl[i].now);
+                        }else if(z==3){
+                            ar3.push(bl[i].now);
+                        }
+                    }
+                    bl[i].now=0;bl[i].innerHTML="";
+                    bl[i].style.backgroundColor="rgb(204, 192, 179)";
+                }
+            }
+            arr.push(ar0);arr.push(ar1);arr.push(ar2);arr.push(ar3);
+            return arr;
+        }
+        function onkeydto(w,arr){
+            var bl=document.getElementById("box").getElementsByTagName("div");
+            var ys=["rgb(237, 224, 200)"];
+            var aa=0,ab=0,ac=0,ad=0,x=0,da=0,db=1,dc=2,dd=3;
+            var ba=0,bb=0,bc=0,bd=0;
+            if(w==1){//左
+                x=4;aa=0;ab=1;ac=2;ad=3;
+                da=3;db=2;dc=1;dd=0;ba=-2;bb=-2;bc=-3;bd=-1;
+            }else if(w==2){//右
+                aa=3;ab=2;ac=1;x=4;
+            }else if(w==3){//上
+                aa=0;ab=4;ac=8;ad=12;x=1;
+                da=3;db=2;dc=1;dd=0;ba=-2;bb=-2;bc=-3;bd=-1;
+            }else if(w==4){//下
+                aa=12;ab=8;ac=4;x=1;
+            }
+            for(var d=0;d<4;d++){
+                if(arr[d].length==1){
+                    bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][da+bc];//zuo.aa=0;x=4;da+bc=0;
+                    bl[x*d+aa].style.backgroundColor=ys[0];
+                }else if(arr[d].length==2){
+                    bl[x*d+aa].style.backgroundColor=ys[0];
+                    if(arr[d][da+ba]==arr[d][db+bb]){
+                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][da+ba]+arr[d][db+bb];//zuo.aa=0;da+ba=1;db+bb=0;ab=1;
+                    }else{
+                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][db+bb];
+                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][da+ba];
+                        bl[x*d+ab].style.backgroundColor=ys[0];
+                    }
+                }else if(arr[d].length==3){
+                    bl[x*d+aa].style.backgroundColor=bl[x*d+ab].style.backgroundColor=ys[0];
+                    if(arr[d][dc+bd]==arr[d][db+bd]){
+                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dc+bd]+arr[d][db+bd];
+                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][da+bd];
+                    }else if(arr[d][db+bd]==arr[d][da+bd]){
+                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][da+bd]+arr[d][db+bd];//左da=3;db=2;dc=1;dd=0;
+                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dc+bd];//xiaaa=12;ab=8;ac=4;x=1;da=0,db=1,dc=2,dd=3;
+                    }else{
+                        bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][da+bd];
+                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][db+bd];
+                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dc+bd];
+                        bl[x*d+ac].style.backgroundColor=ys[0];
+                    }
+                }else if(arr[d].length==4){
+                    bl[x*d+aa].style.backgroundColor=bl[x*d+ab].style.backgroundColor=ys[0];
+                    if(arr[d][dd]==arr[d][dc]){
+                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dc]+arr[d][dd];
+                        if(arr[d][db]==arr[d][da]){
+                            bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][db]+arr[d][da];
+                        }else{
+                            bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][db];
+                            bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][da];
+                            bl[x*d+ac].style.backgroundColor=ys[0];
+                        }
+                    }else if(arr[d][dc]==arr[d][db]){
+                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dd];
+                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][db]+arr[d][dc];
+                        bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][da];
+                        bl[x*d+ac].style.backgroundColor=ys[0];
+                    }else if(arr[d][db]==arr[d][da]){
+                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dd];
+                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][dc];
+                        bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][db]+arr[d][da];
+                        bl[x*d+ac].style.backgroundColor=ys[0];
+                    }else{
+                        bl[x*d+ad].innerHTML=bl[x*d+ad].now=arr[d][da];
+                        bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][db];
+                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][dc];
+                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dd];
+                        bl[x*d+ad].style.backgroundColor=bl[x*d+ac].style.backgroundColor=ys[0];
+                    }
+                }
+            }
+        }
+        window.onload=function () {
+            var box=document.getElementById("box");
+            for(var i=0;i<16;i++){
+                var bl=document.createElement("div");
+                bl.now=0;
+                bl.style.height=bl.style.width="100px";
+                bl.style.fontSize="25px";
+                bl.style.lineHeight="100px";
+                bl.style.textAlign="center";
+                bl.style.position="absolute";
+                if(i<4){
+                    bl.style.left=(12+100)*i+12+"px";
+                    bl.style.top="12px";
+                }else if(i>=4&&i<8){
+                    bl.style.left=(12+100)*(i-4)+12+"px";
+                    bl.style.top="124px";
+                }else if(i>=8&&i<12){
+                    bl.style.left=(12+100)*(i-8)+12+"px";
+                    bl.style.top="236px";
+                }else{
+                    bl.style.left=(12+100)*(i-12)+12+"px";
+                    bl.style.top="348px";
+                }
+                bl.style.backgroundColor="rgb(204, 192, 179)";//初始颜色
+                box.appendChild(bl);
+                //-------------初始化--------------------
+            }
+            document.onkeydown=function (e) {
+                var evc=e.keyCode||event.keycode;
+                var ce=[2,4],arr2=[];
+                if(evc==37){
+                    onkeydto(1,takebl(1));
+                }else if(evc==38){
+                    onkeydto(3,takebl(2));
+                }else if(evc==39){
+                    onkeydto(2,takebl(1));
+                }else if(evc==40){
+                    onkeydto(4,takebl(2));
+                }if(evc==37||evc==38||evc==39||evc==40){
+                    var rd=Math.floor(Math.random()*2);
+                    var bl2=box.getElementsByTagName("div");
+                    for(var i=0;i<bl2.length;i++){
+                        if(bl2[i].now==8){
+                            bl2[i].style.backgroundColor="rgb(242, 177, 121)";
+                        }else if(bl2[i].now==16){
+                            bl2[i].style.backgroundColor="rgb(245, 149, 99)";
+                        }else if(bl2[i].now>=512){
+                            bl2[i].style.backgroundColor="rgb(234,29,246)";
+                        }else if(bl2[i].now==32){
+                            bl2[i].style.backgroundColor="rgb(217,5,172)";
+                        }else if(bl2[i].now==64){
+                            bl2[i].style.backgroundColor="rgb(130,226,228)";
+                        }else if(bl2[i].now>=128){
+                            bl2[i].style.backgroundColor="rgb(71,240,211)";
+                        }
+                        if(bl2[i].now==0) {
+                            arr2.push(bl2[i]);
+                        }
+                    }
+                    if(arr2.length>0){
+                        var to=Math.floor(Math.random()*arr2.length);
+                        arr2[to].style.backgroundColor="rgb(237, 224, 200)";
+                        arr2[to].innerHTML=arr2[to].now=ce[rd];
+                    }
+                }
+            };
+            var ob1=document.getElementById("but1");
+            ob1.onclick=function () {
+                var blo=box.getElementsByTagName("div");
+                for(var i=0;i<blo.length;i++){
+                    blo[i].style.backgroundColor="rgb(204, 192, 179)";
+                    blo[i].now=0;
+                    blo[i].innerHTML="";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="but1" value="新的游戏">
+<div id="box">
+
+</div>
+
+</body>
+</html>

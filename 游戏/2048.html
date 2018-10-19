@@ -13,6 +13,35 @@
         }
     </style>
     <script>
+        function takebl(w){
+            var bl=document.getElementById("box").getElementsByTagName("div");
+            var ar0=[],ar1=[],ar2=[],ar3=[],arr=[];
+            var t1=1,t2=0,t3=1,t4=4;
+            if(w==1){
+                t1=4;t2=4;t3=1;t4=4;
+            }else{
+                t1=1;t2=16;t3=4;t4=0;
+            }
+            for(var z=0;z<4;z++){
+                for(var i=z*t1;i<z*t4+t2;i+=t3){//(i=z;i<16;i+=4)
+                    if(bl[i].now!=0){
+                        if(z==0){
+                            ar0.push(bl[i].now);
+                        }else if(z==1){
+                            ar1.push(bl[i].now);
+                        }else if(z==2){
+                            ar2.push(bl[i].now);
+                        }else if(z==3){
+                            ar3.push(bl[i].now);
+                        }
+                    }
+                    bl[i].now=0;bl[i].innerHTML="";
+                    bl[i].style.backgroundColor="rgb(204, 192, 179)";
+                }
+            }
+            arr.push(ar0);arr.push(ar1);arr.push(ar2);arr.push(ar3);
+            return arr;
+        }
         window.onload=function () {
             var box=document.getElementById("box");
             for(var i=0;i<16;i++){
@@ -45,26 +74,8 @@
                 var ce=[2,4],arr2=[],ys=["rgb(237, 224, 200)","rgb(204, 192, 179)"];
                 var bl=box.getElementsByTagName("div");
                 if(evc==37){//左
-                    var ar0=[],ar1=[],ar2=[],ar3=[],arr=[];
-                    for(var z=0;z<4;z++){
-                        for(var i=z*4;i<z*4+4;i++){
-                            if(bl[i].now!=0){
-                                if(z==0){
-                                    ar0.push(bl[i].now);
-                                }else if(z==1){
-                                    ar1.push(bl[i].now);
-                                }else if(z==2){
-                                    ar2.push(bl[i].now);
-                                }else if(z==3){
-                                    ar3.push(bl[i].now);
-                                }
-                            }
-                            bl[i].now=0;bl[i].innerHTML="";
-                            bl[i].style.backgroundColor=ys[1];
-                        }
-                    }
-                    arr.push(ar0);arr.push(ar1);arr.push(ar2);arr.push(ar3);
-                    for(var d=0;d<4;d++){
+                    var arr=takebl(1);
+                    for(var d=0;d<4;d++){//--------------左----------------
                         if(arr[d].length==2){
                             if(arr[d][0]==arr[d][1]){
                                 bl[4*d].innerHTML=bl[4*d].now=arr[d][0]+arr[d][1];
@@ -210,26 +221,8 @@
                    }
 
                 }else if(evc==39){//---------------------右-----------------
-                    var ar0=[],ar1=[],ar2=[],ar3=[],arr=[];
-                    for(var z=0;z<4;z++){
-                        for(var i=z*4;i<z*4+4;i++){
-                            if(bl[i].now!=0){
-                                if(z==0){
-                                    ar0.push(bl[i].now);
-                                }else if(z==1){
-                                    ar1.push(bl[i].now);
-                                }else if(z==2){
-                                    ar2.push(bl[i].now);
-                                }else if(z==3){
-                                    ar3.push(bl[i].now);
-                                }
-                            }
-                            bl[i].now=0;bl[i].innerHTML="";
-                            bl[i].style.backgroundColor=ys[1];
-                        }
-                    }
-                    arr.push(ar0);arr.push(ar1);arr.push(ar2);arr.push(ar3);
-                    for(var d=0;d<4;d++){
+                    var arr=takebl(1);
+                    for(var d=0;d<4;d++){//------------右------------------------------------
                        if(arr[d].length==2){
                             if(arr[d][0]==arr[d][1]){
                                 bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][0]+arr[d][1];
@@ -240,7 +233,6 @@
                                 bl[4*d+3].style.backgroundColor=ys[0];
                                 bl[2+4*d].style.backgroundColor=ys[0];
                             }//------------一行有两个块----------------
-
                         }else if(arr[d].length==3){
                             if(arr[d][2]==arr[d][1]){
                                 bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][2]+arr[d][1];
@@ -397,12 +389,23 @@
                 }
                 //---------------------------------
             }
+            var ob1=document.getElementById("but1");
+            ob1.onclick=function () {
+                var blo=box.getElementsByTagName("div");
+                for(var i=0;i<blo.length;i++){
+                    blo[i].style.backgroundColor="rgb(204, 192, 179)";
+                    blo[i].now=0;
+                    blo[i].innerHTML="";
+                }
+            }
         }
     </script>
 </head>
 <body>
+<input type="button" id="but1" value="新的游戏">
 <div id="box">
 
 </div>
+
 </body>
 </html>

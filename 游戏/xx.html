@@ -4,7 +4,131 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
+    function f() {
+        for(var d=0;d<4;d++){+
+            if(arr[d].length==2){
+                if(arr[d][0]==arr[d][1]){
+                    bl[4*d].innerHTML=bl[4*d].now=arr[d][0]+arr[d][1];
+                    bl[4*d].style.backgroundColor=ys[0];
+                }else{
+                    bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1];
+                    bl[4*d].style.backgroundColor=bl[1+4*d].style.backgroundColor=ys[0];
+                }//------------一行有两个块----------------
 
+            }else if(arr[d].length==3){
+                if(arr[d][0]==arr[d][1]){
+                    bl[4*d].innerHTML=bl[4*d].now=arr[d][0]+arr[d][1];
+                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][2];
+                    bl[4*d].style.backgroundColor=bl[1+4*d].style.backgroundColor=ys[0];
+                }else if(arr[d][1]==arr[d][2]){
+                    bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1]+arr[d][2];
+                    bl[4*d].style.backgroundColor=bl[1+4*d].style.backgroundColor=ys[0];
+                }else{
+                    bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1];
+                    bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][2];
+                    bl[4*d].style.backgroundColor=ys[0];
+                    bl[1+4*d].style.backgroundColor=bl[2+4*d].style.backgroundColor=ys[0];
+                }
+                //------------一行有三个块----------------
+            }else if(arr[d].length==4){
+                if(arr[d][0]==arr[d][1]){
+                    bl[4*d].innerHTML=bl[4*d].now=arr[d][0]+arr[d][1];
+                    if(arr[d][2]==arr[d][3]){
+                        bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][2]+arr[d][3];
+                    }else{
+                        bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][2];
+                        bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][3];
+                        bl[1+4*d].style.backgroundColor=bl[2+4*d].style.backgroundColor=ys[0];
+                    }
+                }else if(arr[d][1]==arr[d][2]){
+                    bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                    bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][3];
+                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1]+arr[d][2];
+                    bl[2+4*d].style.backgroundColor=ys[0];
+                }else if(arr[d][2]==arr[d][3]){
+                    bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1];
+                    bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][2]+arr[d][3];
+                    bl[2+4*d].style.backgroundColor=ys[0];
+                }else{
+                    bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1];
+                    bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][2];
+                    bl[3+4*d].innerHTML=bl[3+4*d].now=arr[d][3];
+                    bl[2+4*d].style.backgroundColor=bl[3+4*d].style.backgroundColor=ys[0];
+                }
+                bl[4*d].style.backgroundColor=ys[0];
+                bl[1+4*d].style.backgroundColor=ys[0];
+                //------------一行有四个块----------------
+            }else if(arr[d].length==1){
+                bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                bl[4*d].style.backgroundColor=ys[0];
+                //------------一行有一个块----------------
+            }
+        }
+    }
+    function f22() {
+        //左
+        a=1;b=2;c=3;x=4;//xd+a;xd+b;xd+c;xd;
+        //上
+        a=4;b=8;c=12;x=1;//d+a;d+b;d+c;d;
+
+        for(var d=0;d<4;d++){
+
+        }
+        if(arr[d].length>0) {
+            bl[x*d].style.backgroundColor=ys[0];
+            if(arr[d].length>1) {
+                if(arr[d][0]==arr[d][1]){
+                    bl[x*d].innerHTML=bl[x*d].now=arr[d][0]+arr[d][1];
+                    if(arr[d].length>2){
+                        bl[a+x*d].style.backgroundColor=ys[0];
+                        if(arr[d][2]==arr[d][3]){
+                            bl[a+x*d].innerHTML=bl[1+4*d].now=arr[d][2]+arr[d][3];
+                        }else{
+                            bl[a+x*d].innerHTML=bl[1+4*d].now=arr[d][2];
+                            if(arr[d].length>3){
+                                bl[b+x*d].style.backgroundColor=ys[0];
+                                bl[b+x*d].innerHTML=bl[2+4*d].now=arr[d][3];
+                            }
+                        }
+                    }
+                }else{
+                    bl[x*d].innerHTML=bl[x*d].now=arr[d][0];
+                    bl[a+x*d].style.backgroundColor=ys[0];
+                    if(arr[d].length>2){
+                        if(arr[d][2]==arr[d][1]){
+                            bl[a+x*d].innerHTML=bl[a+x*d].now=arr[d][2]+arr[d][1];
+                            if(arr[d].length>3){
+                                bl[b+x*d].innerHTML=bl[b+x*d].now=arr[d][3];
+                            }
+                        }else{
+                            bl[a+x*d].innerHTML=bl[a+x*d].now=arr[d][1];
+                            bl[b+x*d].style.backgroundColor=ys[0];
+                            if(arr[d].length>3){
+                                if(arr[d][2]==arr[d][3]){
+                                    bl[b+x*d].innerHTML=bl[b+x*d].now=arr[d][2]+arr[d][3];
+                                }else{
+                                    bl[b+x*d].innerHTML=bl[b+x*d].now=arr[d][2];
+                                    bl[c+x*d].innerHTML=bl[c+x*d].now=arr[d][3];
+                                    bl[c+x*d].style.backgroundColor=ys[0];
+                                }
+                            }else{
+                                bl[b+x*d].innerHTML=bl[b+x*d].now=arr[d][2];
+                            }
+                        }
+                    }else{
+                        bl[b+x*d].innerHTML=bl[b+x*d].now=arr[d][1];
+                    }
+                }
+            }else{
+                bl[x*d].innerHTML=bl[x*d].now=arr[d][0];
+            }
+        }
+    }
     </script>
 </head>
 <body>
