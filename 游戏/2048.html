@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        #box{
+            background-color: #bbada0;position: relative;
+            margin: 30px auto;width: 460px;height: 460px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var box=document.getElementById("box");
+            for(var i=0;i<16;i++){
+                var bl=document.createElement("div");
+                bl.now=0;
+                bl.style.height=bl.style.width="100px";
+                bl.style.fontSize="25px";
+                bl.style.lineHeight="100px";
+                bl.style.textAlign="center";
+                bl.style.position="absolute";
+                if(i<4){
+                    bl.style.left=(12+100)*i+12+"px";
+                    bl.style.top="12px";
+                }else if(i>=4&&i<8){
+                    bl.style.left=(12+100)*(i-4)+12+"px";
+                    bl.style.top="124px";
+                }else if(i>=8&&i<12){
+                    bl.style.left=(12+100)*(i-8)+12+"px";
+                    bl.style.top="236px";
+                }else{
+                    bl.style.left=(12+100)*(i-12)+12+"px";
+                    bl.style.top="348px";
+                }
+                bl.style.backgroundColor="rgb(204, 192, 179)";//初始颜色
+                box.appendChild(bl);
+                //-------------初始化--------------------
+            }
+            document.onkeydown=function (e) {
+                var ev=e||event,evc=ev.keyCode;
+                var ce=[2,4],arr2=[],ys=["rgb(237, 224, 200)","rgb(204, 192, 179)"];
+                var bl=box.getElementsByTagName("div");
+                if(evc==37){//左
+                    var ar0=[],ar1=[],ar2=[],ar3=[],arr=[];
+                    for(var z=0;z<4;z++){
+                        for(var i=z*4;i<z*4+4;i++){
+                            if(bl[i].now!=0){
+                                if(z==0){
+                                    ar0.push(bl[i].now);
+                                }else if(z==1){
+                                    ar1.push(bl[i].now);
+                                }else if(z==2){
+                                    ar2.push(bl[i].now);
+                                }else if(z==3){
+                                    ar3.push(bl[i].now);
+                                }
+                            }
+                            bl[i].now=0;bl[i].innerHTML="";
+                            bl[i].style.backgroundColor=ys[1];
+                        }
+                    }
+                    arr.push(ar0);arr.push(ar1);arr.push(ar2);arr.push(ar3);
+                    for(var d=0;d<4;d++){
+                        if(arr[d].length==2){
+                            if(arr[d][0]==arr[d][1]){
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0]+arr[d][1];
+                                bl[4*d].style.backgroundColor=ys[0];
+                            }else{
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1];
+                                bl[4*d].style.backgroundColor=bl[1+4*d].style.backgroundColor=ys[0];
+                            }//------------一行有两个块----------------
+
+                        }else if(arr[d].length==3){
+                            if(arr[d][0]==arr[d][1]){
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0]+arr[d][1];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][2];
+                                bl[4*d].style.backgroundColor=bl[1+4*d].style.backgroundColor=ys[0];
+                            }else if(arr[d][1]==arr[d][2]){
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1]+arr[d][2];
+                                bl[4*d].style.backgroundColor=bl[1+4*d].style.backgroundColor=ys[0];
+                            }else{
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][2];
+                                bl[4*d].style.backgroundColor=ys[0];
+                                bl[1+4*d].style.backgroundColor=bl[2+4*d].style.backgroundColor=ys[0];
+                            }
+                            //------------一行有三个块----------------
+                        }else if(arr[d].length==4){
+                            if(arr[d][0]==arr[d][1]){
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0]+arr[d][1];
+                                if(arr[d][2]==arr[d][3]){
+                                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][2]+arr[d][3];
+                                }else{
+                                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][2];
+                                    bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][3];
+                                    bl[1+4*d].style.backgroundColor=bl[2+4*d].style.backgroundColor=ys[0];
+                                }
+                            }else if(arr[d][1]==arr[d][2]){
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][3];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1]+arr[d][2];
+                                bl[2+4*d].style.backgroundColor=ys[0];
+                            }else if(arr[d][2]==arr[d][3]){
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][2]+arr[d][3];
+                                bl[2+4*d].style.backgroundColor=ys[0];
+                            }else{
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][2];
+                                bl[3+4*d].innerHTML=bl[3+4*d].now=arr[d][3];
+                                bl[2+4*d].style.backgroundColor=bl[3+4*d].style.backgroundColor=ys[0];
+                            }
+                            bl[4*d].style.backgroundColor=ys[0];
+                            bl[1+4*d].style.backgroundColor=ys[0];
+                            //------------一行有四个块----------------
+                        }else if(arr[d].length==1){
+                            bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                            bl[4*d].style.backgroundColor=ys[0];
+                            //------------一行有一个块----------------
+                        }
+                    }
+                    //-------------左----------------
+
+
+                }else if(evc==38){//--------------上------------------
+                    var at0=[],at1=[],at2=[],at3=[],atr=[];
+                    for(var q=0;q<4;q++){
+                        for(w=q;w<16;w+=4){
+                            if(bl[w].now!=0){
+                                if(q==0){
+                                    at0.push(bl[w].now);
+                                }else if(q==1){
+                                    at1.push(bl[w].now);
+                                }else if(q==2){
+                                    at2.push(bl[w].now);
+                                }else if(q==3){
+                                    at3.push(bl[w].now);
+                                }
+                            }
+                            bl[w].now=0;bl[w].innerHTML="";
+                            bl[w].style.backgroundColor=ys[1];
+                        }
+                    }
+                    atr.push(at0);atr.push(at1);atr.push(at2);atr.push(at3);
+                    for(var d=0;d<4;d++){
+                       if(atr[d].length==1){
+                           bl[d].innerHTML=bl[d].now=atr[d][0];
+                           bl[d].style.backgroundColor=ys[0];
+                       }else if(atr[d].length==2){
+                           bl[d].style.backgroundColor=ys[0];
+                           if(atr[d][0]==atr[d][1]){
+                               bl[d].innerHTML=bl[d].now=atr[d][0]+atr[d][1];
+                           }else{
+                               bl[d].innerHTML=bl[d].now=atr[d][0];
+                               bl[d+4].innerHTML=bl[d+4].now=atr[d][1];
+                               bl[d+4].style.backgroundColor=ys[0];
+                           }
+                       }else if(atr[d].length==3){
+                           bl[d].style.backgroundColor=bl[d+4].style.backgroundColor=ys[0];
+                           if(atr[d][0]==atr[d][1]){
+                               bl[d].innerHTML=bl[d].now=atr[d][0]+atr[d][1];
+                               bl[d+4].innerHTML=bl[d+4].now=atr[d][2];
+                           }else if(atr[d][2]==atr[d][1]){
+                               bl[d+4].innerHTML=bl[d+4].now=atr[d][2]+atr[d][1];
+                               bl[d].innerHTML=bl[d].now=atr[d][0];
+                           }else{
+                               bl[d].innerHTML=bl[d].now=atr[d][0];
+                               bl[d+4].innerHTML=bl[d+4].now=atr[d][1];
+                               bl[d+8].innerHTML=bl[d+8].now=atr[d][2];
+                               bl[d+8].style.backgroundColor=ys[0];
+                           }
+                       }else if(atr[d].length==4){
+                           bl[d].style.backgroundColor=bl[d+4].style.backgroundColor=ys[0];
+                           if(atr[d][0]==atr[d][1]){
+                               bl[d].innerHTML=bl[d].now=atr[d][0]+atr[d][1];
+                               if(atr[d][2]==atr[d][3]){
+                                   bl[d+4].innerHTML=bl[d+4].now=atr[d][2]+atr[d][3];
+                               }else{
+                                   bl[d+4].innerHTML=bl[d+4].now=atr[d][2];
+                                   bl[d+8].innerHTML=bl[d+8].now=atr[d][3];
+                                   bl[d+8].style.backgroundColor=ys[0];
+                               }
+                           }else if(atr[d][2]==atr[d][1]){
+                               bl[d].innerHTML=bl[d].now=atr[d][0];
+                               bl[d+4].innerHTML=bl[d+4].now=atr[d][1]+atr[d][2];
+                               bl[d+8].innerHTML=bl[d+8].now=atr[d][3];
+                               bl[d+8].style.backgroundColor=ys[0];
+                           }else if(atr[d][2]==atr[d][3]){
+                               bl[d].innerHTML=bl[d].now=atr[d][0];
+                               bl[d+4].innerHTML=bl[d+4].now=atr[d][1];
+                               bl[d+8].innerHTML=bl[d+8].now=atr[d][3]+atr[d][2];
+                               bl[d+8].style.backgroundColor=ys[0];
+                           }else{
+                               bl[d].innerHTML=bl[d].now=atr[d][0];
+                               bl[d+4].innerHTML=bl[d+4].now=atr[d][1];
+                               bl[d+8].innerHTML=bl[d+8].now=atr[d][2];
+                               bl[d+12].innerHTML=bl[d+12].now=atr[d][3];
+                               bl[d+8].style.backgroundColor=bl[d+12].style.backgroundColor=ys[0];
+                           }
+                       }
+                   }
+
+                }else if(evc==39){//---------------------右-----------------
+                    var ar0=[],ar1=[],ar2=[],ar3=[],arr=[];
+                    for(var z=0;z<4;z++){
+                        for(var i=z*4;i<z*4+4;i++){
+                            if(bl[i].now!=0){
+                                if(z==0){
+                                    ar0.push(bl[i].now);
+                                }else if(z==1){
+                                    ar1.push(bl[i].now);
+                                }else if(z==2){
+                                    ar2.push(bl[i].now);
+                                }else if(z==3){
+                                    ar3.push(bl[i].now);
+                                }
+                            }
+                            bl[i].now=0;bl[i].innerHTML="";
+                            bl[i].style.backgroundColor=ys[1];
+                        }
+                    }
+                    arr.push(ar0);arr.push(ar1);arr.push(ar2);arr.push(ar3);
+                    for(var d=0;d<4;d++){
+                       if(arr[d].length==2){
+                            if(arr[d][0]==arr[d][1]){
+                                bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][0]+arr[d][1];
+                                bl[4*d+3].style.backgroundColor=ys[0];
+                            }else{
+                                bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][1];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][0];
+                                bl[4*d+3].style.backgroundColor=ys[0];
+                                bl[2+4*d].style.backgroundColor=ys[0];
+                            }//------------一行有两个块----------------
+
+                        }else if(arr[d].length==3){
+                            if(arr[d][2]==arr[d][1]){
+                                bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][2]+arr[d][1];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][0];
+                                bl[4*d+3].style.backgroundColor=bl[2+4*d].style.backgroundColor=ys[0];
+                            }else if(arr[d][1]==arr[d][0]){
+                                bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][2];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][1]+arr[d][0];
+                                bl[4*d+3].style.backgroundColor=bl[2+4*d].style.backgroundColor=ys[0];
+                            }else{
+                                bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][2];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][1];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][0];
+                                bl[4*d+3].style.backgroundColor=ys[0];
+                                bl[2+4*d].style.backgroundColor=bl[1+4*d].style.backgroundColor=ys[0];
+                            }
+                            //------------一行有三个块----------------
+                        }else if(arr[d].length==4){
+                            if(arr[d][3]==arr[d][2]){
+                                bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][3]+arr[d][2];
+                                if(arr[d][1]==arr[d][0]){
+                                    bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][1]+arr[d][0];
+                                }else{
+                                    bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][1];
+                                    bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][0];
+                                    bl[1+4*d].style.backgroundColor=ys[0];
+                                }
+                            }else if(arr[d][1]==arr[d][2]){
+                                bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][3];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][0];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][1]+arr[d][2];
+                                bl[1+4*d].style.backgroundColor=ys[0];
+                            }else if(arr[d][0]==arr[d][1]){
+                                bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][3];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][2];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][0]+arr[d][1];
+                                bl[1+4*d].style.backgroundColor=ys[0];
+                            }else{
+                                bl[4*d].innerHTML=bl[4*d].now=arr[d][0];
+                                bl[1+4*d].innerHTML=bl[1+4*d].now=arr[d][1];
+                                bl[2+4*d].innerHTML=bl[2+4*d].now=arr[d][2];
+                                bl[3+4*d].innerHTML=bl[3+4*d].now=arr[d][3];
+                                bl[1+4*d].style.backgroundColor=bl[4*d].style.backgroundColor=ys[0];
+                            }
+                            bl[4*d+3].style.backgroundColor=ys[0];
+                            bl[2+4*d].style.backgroundColor=ys[0];
+                            //------------一行有四个块----------------
+                        }else if(arr[d].length==1){
+                            bl[4*d+3].innerHTML=bl[4*d+3].now=arr[d][0];
+                            bl[4*d+3].style.backgroundColor=ys[0];
+                            //------------一行有一个块----------------
+                        }
+                    }//------------右---------------------
+
+
+
+                }else if(evc==40){//下
+                    var at0=[],at1=[],at2=[],at3=[],atr=[];
+                    for(var q=0;q<4;q++){
+                        for(w=q;w<16;w+=4){
+                            if(bl[w].now!=0){
+                                if(q==0){
+                                    at0.push(bl[w].now);
+                                }else if(q==1){
+                                    at1.push(bl[w].now);
+                                }else if(q==2){
+                                    at2.push(bl[w].now);
+                                }else if(q==3){
+                                    at3.push(bl[w].now);
+                                }
+                            }
+                            bl[w].now=0;bl[w].innerHTML="";
+                            bl[w].style.backgroundColor=ys[1];
+                        }
+                    }
+                    atr.push(at0);atr.push(at1);atr.push(at2);atr.push(at3);
+                    for(var d=0;d<4;d++){
+                        if(atr[d].length==1){
+                            bl[d+12].innerHTML=bl[d+12].now=atr[d][0];
+                            bl[d+12].style.backgroundColor=ys[0];
+                        }else if(atr[d].length==2){
+                            bl[d+12].style.backgroundColor=ys[0];
+                            if(atr[d][0]==atr[d][1]){
+                                bl[d+12].innerHTML=bl[d+12].now=atr[d][0]+atr[d][1];
+                            }else{
+                                bl[d+12].innerHTML=bl[d+12].now=atr[d][1];
+                                bl[d+8].innerHTML=bl[d+8].now=atr[d][0];
+                                bl[d+8].style.backgroundColor=ys[0];
+                            }
+                        }else if(atr[d].length==3){
+                            bl[d+12].style.backgroundColor=bl[d+8].style.backgroundColor=ys[0];
+                            if(atr[d][2]==atr[d][1]){
+                                bl[d+12].innerHTML=bl[d+12].now=atr[d][2]+atr[d][1];
+                                bl[d+8].innerHTML=bl[d+8].now=atr[d][0];
+                            }else if(atr[d][1]==atr[d][0]){
+                                bl[d+8].innerHTML=bl[d+8].now=atr[d][0]+atr[d][1];
+                                bl[d+12].innerHTML=bl[d+12].now=atr[d][2];
+                            }else{
+                                bl[d+4].innerHTML=bl[d+4].now=atr[d][0];
+                                bl[d+8].innerHTML=bl[d+8].now=atr[d][1];
+                                bl[d+12].innerHTML=bl[d+12].now=atr[d][2];
+                                bl[d+4].style.backgroundColor=ys[0];
+                            }
+                        }else if(atr[d].length==4){
+                            bl[d+12].style.backgroundColor=bl[d+8].style.backgroundColor=ys[0];
+                            if(atr[d][3]==atr[d][2]){
+                                bl[d+12].innerHTML=bl[d+12].now=atr[d][2]+atr[d][3];
+                                if(atr[d][1]==atr[d][0]){
+                                    bl[d+8].innerHTML=bl[d+8].now=atr[d][1]+atr[d][0];
+                                }else{
+                                    bl[d+8].innerHTML=bl[d+8].now=atr[d][1];
+                                    bl[d+4].innerHTML=bl[d+4].now=atr[d][0];
+                                    bl[d+4].style.backgroundColor=ys[0];
+                                }
+                            }else if(atr[d][2]==atr[d][1]){
+                                bl[d+12].innerHTML=bl[d+12].now=atr[d][3];
+                                bl[d+8].innerHTML=bl[d+8].now=atr[d][1]+atr[d][2];
+                                bl[d+4].innerHTML=bl[d+4].now=atr[d][0];
+                                bl[d+4].style.backgroundColor=ys[0];
+                            }else if(atr[d][1]==atr[d][0]){
+                                bl[d+12].innerHTML=bl[d+12].now=atr[d][3];
+                                bl[d+8].innerHTML=bl[d+8].now=atr[d][2];
+                                bl[d+4].innerHTML=bl[d+4].now=atr[d][1]+atr[d][0];
+                                bl[d+4].style.backgroundColor=ys[0];
+                            }else{
+                                bl[d].innerHTML=bl[d].now=atr[d][0];
+                                bl[d+4].innerHTML=bl[d+4].now=atr[d][1];
+                                bl[d+8].innerHTML=bl[d+8].now=atr[d][2];
+                                bl[d+12].innerHTML=bl[d+12].now=atr[d][3];
+                                bl[d].style.backgroundColor=bl[d+4].style.backgroundColor=ys[0];
+                            }
+                        }
+                    }
+                }
+                //--------生成新分数块---------
+                var rd=Math.floor(Math.random()*2);
+                var bl2=box.getElementsByTagName("div");
+                for(var i=0;i<bl2.length;i++){
+                    if(bl2[i].now==8){
+                        bl2[i].style.backgroundColor="rgb(242, 177, 121)";
+                    }else if(bl2[i].now==16){
+                        bl2[i].style.backgroundColor="rgb(245, 149, 99)";
+                    }else if(bl2[i].now>=512){
+                        bl2[i].style.backgroundColor="rgb(234,29,246)";
+                    }
+                    if(bl2[i].now==0) {
+                        arr2.push(bl2[i]);
+                    }
+                }
+                if(arr2.length>0){
+                    var to=Math.floor(Math.random()*arr2.length);
+                    arr2[to].style.backgroundColor=ys[0];
+                    arr2[to].innerHTML=arr2[to].now=ce[rd];
+                }
+                //---------------------------------
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+
+</div>
+</body>
+</html>
