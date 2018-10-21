@@ -11,35 +11,31 @@
             background-color: #bbada0;position: relative;
             margin: 30px auto;width: 460px;height: 460px;
         }
+         input{
+            display: block;width: 70px;height: 35px;position: relative;
+        }
+        #in1{
+            position: relative;margin: 100px auto;height: 110px;width: 210px;
+        }
     </style>
     <script>
         function takebl(w){
             var bl=document.getElementById("box").getElementsByTagName("div");
-            var ar0=[],ar1=[],ar2=[],ar3=[],arr=[];
-            var t1=1,t2=0,t3=1,t4=4;
+            var arr=[[],[],[],[]];
             if(w==1){
-                t1=4;t2=4;t3=1;t4=4;
+                var t1=4,t2=4,t3=1,t4=4;
             }else{
-                t1=1;t2=16;t3=4;t4=0;
+                var t1=1,t2=16,t3=4,t4=0;
             }
             for(var z=0;z<4;z++){
-                for(var i=z*t1;i<z*t4+t2;i+=t3){//(i=z;i<16;i+=4)
+                for(var i=z*t1;i<z*t4+t2;i+=t3){
                     if(bl[i].now!=0){
-                        if(z==0){
-                            ar0.push(bl[i].now);
-                        }else if(z==1){
-                            ar1.push(bl[i].now);
-                        }else if(z==2){
-                            ar2.push(bl[i].now);
-                        }else if(z==3){
-                            ar3.push(bl[i].now);
-                        }
+                        arr[z].push(bl[i].now);
                     }
                     bl[i].now=0;bl[i].innerHTML="";
                     bl[i].style.backgroundColor="rgb(204, 192, 179)";
                 }
             }
-            arr.push(ar0);arr.push(ar1);arr.push(ar2);arr.push(ar3);
             return arr;
         }
         function onkeydto(w,arr){
@@ -60,60 +56,77 @@
             }
             for(var d=0;d<4;d++){
                 if(arr[d].length==1){
-                    bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][da+bc];//zuo.aa=0;x=4;da+bc=0;
+                    blnow(arr,d,(x*d+aa),(da+bc));
                     bl[x*d+aa].style.backgroundColor=ys[0];
                 }else if(arr[d].length==2){
                     bl[x*d+aa].style.backgroundColor=ys[0];
                     if(arr[d][da+ba]==arr[d][db+bb]){
-                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][da+ba]+arr[d][db+bb];//zuo.aa=0;da+ba=1;db+bb=0;ab=1;
+                        blnow(arr,d,(x*d+aa),(da+ba),(db+bb));
                     }else{
-                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][db+bb];
-                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][da+ba];
+                        blnow(arr,d,(x*d+aa),(db+bb));
+                        blnow(arr,d,(x*d+ab),(da+ba));
                         bl[x*d+ab].style.backgroundColor=ys[0];
                     }
                 }else if(arr[d].length==3){
                     bl[x*d+aa].style.backgroundColor=bl[x*d+ab].style.backgroundColor=ys[0];
                     if(arr[d][dc+bd]==arr[d][db+bd]){
-                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dc+bd]+arr[d][db+bd];
-                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][da+bd];
+                        blnow(arr,d,(x*d+aa),(dc+bd),(db+bd));
+                        blnow(arr,d,(x*d+ab),(da+bd));
                     }else if(arr[d][db+bd]==arr[d][da+bd]){
-                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][da+bd]+arr[d][db+bd];//左da=3;db=2;dc=1;dd=0;
-                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dc+bd];//xiaaa=12;ab=8;ac=4;x=1;da=0,db=1,dc=2,dd=3;
+                        blnow(arr,d,(x*d+ab),(da+bd),(db+bd));
+                        blnow(arr,d,(x*d+aa),(dc+bd));
                     }else{
-                        bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][da+bd];
-                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][db+bd];
-                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dc+bd];
+                        blnow(arr,d,(x*d+ac),(da+bd));
+                        blnow(arr,d,(x*d+ab),(db+bd));
+                        blnow(arr,d,(x*d+aa),(dc+bd));
                         bl[x*d+ac].style.backgroundColor=ys[0];
                     }
                 }else if(arr[d].length==4){
                     bl[x*d+aa].style.backgroundColor=bl[x*d+ab].style.backgroundColor=ys[0];
                     if(arr[d][dd]==arr[d][dc]){
-                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dc]+arr[d][dd];
+                        blnow(arr,d,(x*d+aa),dc,dd);
                         if(arr[d][db]==arr[d][da]){
-                            bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][db]+arr[d][da];
+                            blnow(arr,d,(x*d+ab),db,da);
                         }else{
-                            bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][db];
-                            bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][da];
+                            blnow(arr,d,(x*d+ab),db);
+                            blnow(arr,d,(x*d+ac),da);
                             bl[x*d+ac].style.backgroundColor=ys[0];
                         }
                     }else if(arr[d][dc]==arr[d][db]){
-                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dd];
-                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][db]+arr[d][dc];
-                        bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][da];
+                        blnow(arr,d,(x*d+aa),dd);
+                        blnow(arr,d,(x*d+ab),db,dc);
+                        blnow(arr,d,(x*d+ac),da);
                         bl[x*d+ac].style.backgroundColor=ys[0];
                     }else if(arr[d][db]==arr[d][da]){
-                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dd];
-                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][dc];
-                        bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][db]+arr[d][da];
+                        blnow(arr,d,(x*d+aa),dd);
+                        blnow(arr,d,(x*d+ab),dc);
+                        blnow(arr,d,(x*d+ac),db,da);
                         bl[x*d+ac].style.backgroundColor=ys[0];
                     }else{
-                        bl[x*d+ad].innerHTML=bl[x*d+ad].now=arr[d][da];
-                        bl[x*d+ac].innerHTML=bl[x*d+ac].now=arr[d][db];
-                        bl[x*d+ab].innerHTML=bl[x*d+ab].now=arr[d][dc];
-                        bl[x*d+aa].innerHTML=bl[x*d+aa].now=arr[d][dd];
+                        blnow(arr,d,(x*d+ad),da);
+                        blnow(arr,d,(x*d+ac),db);
+                        blnow(arr,d,(x*d+ab),dc);
+                        blnow(arr,d,(x*d+aa),dd);
                         bl[x*d+ad].style.backgroundColor=bl[x*d+ac].style.backgroundColor=ys[0];
                     }
                 }
+            }
+        }
+        function newgamae(n){
+            var bl=document.getElementById("box").getElementsByTagName("div");
+            for(var i=0;i<n;i++){
+                var to=Math.floor(Math.random()*16),rd=Math.floor(Math.random()*2);
+                var ce=[2,4];
+                bl[to].style.backgroundColor="rgb(237, 224, 200)";
+                bl[to].innerHTML=bl[to].now=ce[rd];
+            }
+        }
+        function blnow(arr,d,a,b,c){
+            var bl=document.getElementById("box").getElementsByTagName("div");
+            if(c){
+                bl[a].innerHTML=bl[a].now=arr[d][b]+arr[d][c];
+            }else{
+                bl[a].innerHTML=bl[a].now=arr[d][b];
             }
         }
         window.onload=function () {
@@ -139,22 +152,25 @@
                     bl.style.left=(12+100)*(i-12)+12+"px";
                     bl.style.top="348px";
                 }
-                bl.style.backgroundColor="rgb(204, 192, 179)";//初始颜色
+                bl.style.backgroundColor="rgb(204, 192, 179)";
                 box.appendChild(bl);
-                //-------------初始化--------------------
             }
-            document.onkeydown=function (e) {
+            newgamae(2);
+            var obt=document.getElementById("in1").getElementsByTagName("input");
+            obt[2].style.top="-35px";obt[2].style.left="-70px";
+            obt[3].style.top="-70px";obt[3].style.left="70px";
+            obt[1].onclick=obt[2].onclick=obt[3].onclick=obt[0].onclick=document.onkeydown=function (e) {
                 var evc=e.keyCode||event.keycode;
                 var ce=[2,4],arr2=[];
-                if(evc==37){
-                    onkeydto(1,takebl(1));
-                }else if(evc==38){
+                if(evc==37||this.value=="左"){
+                    onkeydto(1,takebl(1),);
+                }else if(evc==38||this.value=="上"){
                     onkeydto(3,takebl(2));
-                }else if(evc==39){
+                }else if(evc==39||this.value=="右"){
                     onkeydto(2,takebl(1));
-                }else if(evc==40){
+                }else if(evc==40||this.value=="下"){
                     onkeydto(4,takebl(2));
-                }if(evc==37||evc==38||evc==39||evc==40){
+                }if(evc==37||evc==38||evc==39||evc==40||this.value){
                     var rd=Math.floor(Math.random()*2);
                     var bl2=box.getElementsByTagName("div");
                     for(var i=0;i<bl2.length;i++){
@@ -165,7 +181,7 @@
                         }else if(bl2[i].now>=512){
                             bl2[i].style.backgroundColor="rgb(234,29,246)";
                         }else if(bl2[i].now==32){
-                            bl2[i].style.backgroundColor="rgb(217,5,172)";
+                            bl2[i].style.backgroundColor="rgb(147,64,224)";
                         }else if(bl2[i].now==64){
                             bl2[i].style.backgroundColor="rgb(130,226,228)";
                         }else if(bl2[i].now>=128){
@@ -190,15 +206,19 @@
                     blo[i].now=0;
                     blo[i].innerHTML="";
                 }
+                newgamae(2);
             }
         }
     </script>
 </head>
 <body>
 <input type="button" id="but1" value="新的游戏">
-<div id="box">
-
+<div id="box"></div>
+<div id="in1">
+    <input type="button" value="上">
+    <input type="button" value="下">
+    <input type="button" value="左">
+    <input type="button" value="右">
 </div>
-
 </body>
 </html>
