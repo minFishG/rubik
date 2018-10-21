@@ -62,6 +62,7 @@
                     bl[x*d+aa].style.backgroundColor=ys[0];
                     if(arr[d][da+ba]==arr[d][db+bb]){
                         blnow(arr,d,(x*d+aa),(da+ba),(db+bb));
+                        points();
                     }else{
                         blnow(arr,d,(x*d+aa),(db+bb));
                         blnow(arr,d,(x*d+ab),(da+ba));
@@ -72,9 +73,11 @@
                     if(arr[d][dc+bd]==arr[d][db+bd]){
                         blnow(arr,d,(x*d+aa),(dc+bd),(db+bd));
                         blnow(arr,d,(x*d+ab),(da+bd));
+                        points();
                     }else if(arr[d][db+bd]==arr[d][da+bd]){
                         blnow(arr,d,(x*d+ab),(da+bd),(db+bd));
                         blnow(arr,d,(x*d+aa),(dc+bd));
+                        points();
                     }else{
                         blnow(arr,d,(x*d+ac),(da+bd));
                         blnow(arr,d,(x*d+ab),(db+bd));
@@ -85,8 +88,10 @@
                     bl[x*d+aa].style.backgroundColor=bl[x*d+ab].style.backgroundColor=ys[0];
                     if(arr[d][dd]==arr[d][dc]){
                         blnow(arr,d,(x*d+aa),dc,dd);
+                        points();
                         if(arr[d][db]==arr[d][da]){
                             blnow(arr,d,(x*d+ab),db,da);
+                            points();
                         }else{
                             blnow(arr,d,(x*d+ab),db);
                             blnow(arr,d,(x*d+ac),da);
@@ -96,11 +101,13 @@
                         blnow(arr,d,(x*d+aa),dd);
                         blnow(arr,d,(x*d+ab),db,dc);
                         blnow(arr,d,(x*d+ac),da);
+                        points();
                         bl[x*d+ac].style.backgroundColor=ys[0];
                     }else if(arr[d][db]==arr[d][da]){
                         blnow(arr,d,(x*d+aa),dd);
                         blnow(arr,d,(x*d+ab),dc);
                         blnow(arr,d,(x*d+ac),db,da);
+                        points();
                         bl[x*d+ac].style.backgroundColor=ys[0];
                     }else{
                         blnow(arr,d,(x*d+ad),da);
@@ -123,13 +130,19 @@
         }
         function blnow(arr,d,a,b,c){
             var bl=document.getElementById("box").getElementsByTagName("div");
-            if(c){
+            if(arguments.length>4){
                 bl[a].innerHTML=bl[a].now=arr[d][b]+arr[d][c];
             }else{
                 bl[a].innerHTML=bl[a].now=arr[d][b];
             }
         }
+        function points(){
+            var pts=document.getElementById("pts");
+            pts.p+=1;
+            pts.innerHTML="分数："+pts.p;
+        }
         window.onload=function () {
+            var pts=document.getElementById("pts");pts.p=0;
             var box=document.getElementById("box");
             for(var i=0;i<16;i++){
                 var bl=document.createElement("div");
@@ -220,5 +233,6 @@
     <input type="button" value="左">
     <input type="button" value="右">
 </div>
+<div id="pts">分数：</div>
 </body>
 </html>
