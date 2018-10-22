@@ -72,9 +72,7 @@
                                 kuai[kd].innerHTML=kuai[kd].now=narr[z][0];
                                 narr[z].splice(0,1);
                                 setColor(kd);
-                                if(kuai[kd].d==kuai[kd].now){
-                                    my2048.m=0;
-                                }else if(kuai[kd].d!=kuai[kd].now){
+                                if(kuai[kd].d!=kuai[kd].now){
                                     my2048.m=1;
                                 }
                             }
@@ -165,7 +163,7 @@
                     countDiv(4,movingDiv(countDiv(4)));
                 }
                 if((c==37||c==38||c==39||c==40)&&(my2048.m==1)){
-                    newGame();
+                    newGame();my2048.m=0;
                 }
             };
         };
