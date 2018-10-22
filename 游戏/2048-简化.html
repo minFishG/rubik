@@ -23,12 +23,12 @@
             var bl=document.getElementById("box").getElementsByTagName("div");
             var arr=[[],[],[],[]];
             if(w==1){
-                var t1=4,t2=4,t3=1,t4=4;
+                var t1=4,t2=4,t3=4,t4=1;
             }else{
-                var t1=1,t2=16,t3=4,t4=0;
+                var t1=1,t2=0,t3=16,t4=4;
             }
             for(var z=0;z<4;z++){
-                for(var i=z*t1;i<z*t4+t2;i+=t3){
+                for(var i=z*t1;i<z*t2+t3;i+=t4){
                     if(bl[i].now!=0){
                         arr[z].push(bl[i].now);
                     }
@@ -183,7 +183,8 @@
                     onkeydto(2,takebl(1));
                 }else if(evc==40||this.value=="下"){
                     onkeydto(4,takebl(2));
-                }if(evc==37||evc==38||evc==39||evc==40||this.value){
+                }
+                if(evc==37||evc==38||evc==39||evc==40||this.value){
                     var rd=Math.floor(Math.random()*2);
                     var bl2=box.getElementsByTagName("div");
                     for(var i=0;i<bl2.length;i++){

@@ -16,7 +16,7 @@ function startmove(obj,json,fn) {
             }else{
                 icur=parseInt(getstyle(obj,attr));
             }
-            var iSpeed = (json[attr] - icur) / 8;
+            var iSpeed = (json[attr] - icur) / 6;
             iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
             if (icur != json[attr]) {
                 bstop=false;

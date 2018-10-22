@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function a1(narr) {
+            var arr=[1,2];
+            if(narr){
+                alert(narr);
+            }else{
+                return arr;
+            }
+        }
+        function a2(arr) {
+            arr.push(1);
+            return arr;
+        }
+        window.onload=function () {
+            a1(a2(a1()));
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
