@@ -4,20 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
-        function a1(narr) {
-            var arr=[1,2];
-            if(narr){
-                alert(narr);
-            }else{
-                return arr;
-            }
-        }
-        function a2(arr) {
-            arr.push(1);
-            return arr;
-        }
         window.onload=function () {
-            a1(a2(a1()));
+          var ys={2:"rgb(1,23,250)",4:"rgb(237, 224, 200)"};
+         document.getElementsByTagName("body")[0].style.backgroundColor=ys[4];
         }
     </script>
 </head>
