@@ -331,7 +331,10 @@
             var bl2=bo2.getElementsByTagName("div");
             var ys={0:"rgb(204, 192, 179)",2: "rgb(238, 228, 218)",4:"rgb(237, 224, 200)"
                 ,8:"rgb(242, 177, 121)",16:"rgb(245, 149, 99)",32:"rgb(246, 126, 95)"
-                ,64:"rgb(246, 94, 59)",128:"rgb(237, 207, 114)",256:"rgb(37,80,208)"};
+                ,64:"rgb(246, 94, 59)",128:"rgb(237, 207, 114)"
+                ,256:"rgb(40,231,254)",512:"rgb(198,88,249)",1024:"rgb(11,248,152)",2048:"rgb(245,2,174)"
+                ,4096:"rgb(47,15,180)",8192:"rgb(214,17,33)"
+            };
             var l=arr[i][b];var p=bl2[a];
             l.style.zIndex="1000";p.on=0;
             startmove(l,{left:p.le,top:p.to},function () {
@@ -342,9 +345,7 @@
                 }else if(c==2){
                     p.po=l.p2;p.innerHTML=p.po;
                 }
-                if(p.po>128){
-                    p.style.backgroundColor=ys[256];
-                }else if(p.po>-1&&p.po<129){
+                if(p.po>-1){
                     p.style.backgroundColor=ys[p.po];
                 }
                 p.on=1;
