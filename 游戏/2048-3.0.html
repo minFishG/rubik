@@ -31,7 +31,22 @@
         a{
             color: #000;text-decoration: none;
         }
-
+        #cont div{
+            width: 80px;height: 80px;font-size: 30px;position: relative;
+            text-align: center;line-height: 80px;border-bottom: 2px solid blue;
+        }
+        #le{
+            top: -95px;left: 100px;
+        }
+        #to{
+            top: -100px;left: 390px;
+        }
+        #ri{
+            top: -260px;left: 680px;
+        }
+        #bo{
+            top: -180px;left: 390px;
+        }
     </style>
     <script>
         function getStyle(obj, attr)
@@ -126,7 +141,32 @@
                   }
 
             };
+            document.getElementById("le").onclick=function(){
+                if(bo2.b==1){
+                    bo2.b=0;
+                    takepoints(1);
+                }
+            };
+            document.getElementById("to").onclick=function(){
+                if(bo2.b==1){
+                    bo2.b=0;
+                    takepoints(2);
+                }
+            };
+            document.getElementById("ri").onclick=function(){
+                if(bo2.b==1){
+                    bo2.b=0;
+                    takepoints(3);
+                }
+            };
+            document.getElementById("bo").onclick=function(){
+                if(bo2.b==1){
+                    bo2.b=0;
+                    takepoints(4);
+                }
+            };
             document.getElementById("newa").onclick=newgame;
+
             newdiv(2);
         }
         function addpoi() {
@@ -324,6 +364,11 @@
     <div id="bo2"></div>
     <div id="over" ></div>
 </div>
-
+<div id="cont">
+    <div id="le">&#60</div>
+    <div id="to">&#923</div>
+    <div id="ri">&#62</div>
+    <div id="bo">V</div>
+</div>
 </body>
 </html>
