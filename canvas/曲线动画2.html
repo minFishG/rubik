@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function animation(){
+            var c=document.getElementById("myc").getContext("2d");
+            c.clearRect(0,0,1200,600);
+            var x=Math.floor(Math.random()*1200);
+            var y=Math.floor(Math.random()*600);
+            c.beginPath();
+            c.moveTo(600,300);
+            c.quadraticCurveTo(x,y,650,300);
+            c.stroke();
+        }
+        window.onload=function () {
+            var timer=setInterval(function () {
+                animation();
+            },30);
+            document.onclick=function () {
+               clearInterval(timer);
+            }
+        }
+    </script>
+</head>
+<body>
+<canvas id="myc" style="border: 1px solid" width="1200px" height="600px"></canvas>
+</body>
+</html>

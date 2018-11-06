@@ -92,29 +92,17 @@
         }
         function setColor(i) {
             var kuai=document.getElementById("my2048").getElementsByTagName("div");
-            var ki=kuai[i].innerHTML,s=0;
-            var ys=["rgb(204, 192, 179)", "rgb(238, 228, 218)"//2
-                ,"rgb(237, 224, 200)"//4
-                ,"rgb(242, 177, 121)"//8
-                ,"rgb(245, 149, 99)"//16
-                ,"rgb(246, 126, 95)","rgb(246, 94, 59)"
-            ,"rgb(237, 207, 114)","rgb(37,80,208)"];
-            if(ki=="2"){
-                s=1;
-            }else if(ki=="4"){
-                s=2;
-            }else if(ki=="8"){
-                s=3;
-            }else if(ki=="16"){
-                s=4;
-            }else if(ki=="32"){
-                s=5;
-            }else if(ki=="64"){
-                s=6;
-            }else if(ki=="128"){
-                s=7;
-            }else if(ki>"128"){
-                s=8;
+            var ki=kuai[i].now,s=0;
+            var ys={0:"rgb(204, 192, 179)", 2:"rgb(238, 228, 218)"//2
+                ,4:"rgb(237, 224, 200)"//4
+                ,8:"rgb(242, 177, 121)"//8
+                ,16:"rgb(245, 149, 99)"//16
+                ,32:"rgb(246, 126, 95)",64:"rgb(246, 94, 59)"
+            ,128:"rgb(237, 207, 114)",256:"rgb(37,80,208)"};
+            if(ki>128){
+                s=256;
+            }else{
+                s=ki
             }
             kuai[i].style.backgroundColor=ys[s];
         }

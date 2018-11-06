@@ -49,55 +49,39 @@
         }
     </style>
     <script>
-        function getStyle(obj, attr)
-        {
-            if(obj.currentStyle)
-            {
+        function getStyle(obj, attr) {
+            if(obj.currentStyle) {
                 return obj.currentStyle[attr];
-            }
-            else
-            {
+            } else {
                 return getComputedStyle(obj, false)[attr];
             }
         }
-
-        function startmove(obj, json, fn)
-        {
+        function startmove(obj, json, fn) {
             clearInterval(obj.timer);
             obj.timer=setInterval(function (){
                 var bStop=true;
-                for(var attr in json)
-                {
+                for(var attr in json) {
                     var iCur=0;
-                    if(attr=='opacity')
-                    {
+                    if(attr=='opacity') {
                         iCur=parseInt(parseFloat(getStyle(obj, attr))*100);
-                    }
-                    else
-                    {
+                    } else {
                         iCur=parseInt(getStyle(obj, attr));
                     }
                     var iSpeed=(json[attr]-iCur)/3;
                     iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
-                    if(iCur!=json[attr])
-                    {
+                    if(iCur!=json[attr]) {
                         bStop=false;
                     }
-                    if(attr=='opacity')
-                    {
+                    if(attr=='opacity') {
                         obj.style.filter='alpha(opacity:'+(iCur+iSpeed)+')';
                         obj.style.opacity=(iCur+iSpeed)/100;
-                    }
-                    else
-                    {
+                    } else {
                         obj.style[attr]=iCur+iSpeed+'px';
                     }
                 }
-                if(bStop)
-                {
+                if(bStop) {
                     clearInterval(obj.timer);
-                    if(fn)
-                    {
+                    if(fn) {
                         fn();
                     }
                 }
@@ -331,10 +315,9 @@
             var bl2=bo2.getElementsByTagName("div");
             var ys={0:"rgb(204, 192, 179)",2: "rgb(238, 228, 218)",4:"rgb(237, 224, 200)"
                 ,8:"rgb(242, 177, 121)",16:"rgb(245, 149, 99)",32:"rgb(246, 126, 95)"
-                ,64:"rgb(246, 94, 59)",128:"rgb(237, 207, 114)"
-                ,256:"rgb(40,231,254)",512:"rgb(198,88,249)",1024:"rgb(11,248,152)",2048:"rgb(245,2,174)"
-                ,4096:"rgb(47,15,180)",8192:"rgb(214,17,33)"
-            };
+                ,64:"rgb(246, 94, 59)",128:"rgb(237, 207, 114)",256:"rgb(40,231,254)"
+                ,512:"rgb(198,88,249)",1024:"rgb(11,248,152)",2048:"rgb(245,2,174)"
+                ,4096:"rgb(47,15,180)",8192:"rgb(214,17,33)"};
             var l=arr[i][b];var p=bl2[a];
             l.style.zIndex="1000";p.on=0;
             startmove(l,{left:p.le,top:p.to},function () {
